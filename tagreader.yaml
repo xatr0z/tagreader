@@ -178,11 +178,15 @@ pn532_i2c:
             brightness: 100%
             flash_length: 500ms
 
-# Define the buzzer output
 output:
+# Define the buzzer output
 - platform: esp8266_pwm
   pin: D7
   id: buzzer
+# Define the led output
+- platform: esp8266_pwm
+  pin: D5
+  id: activity_led_output
 
 binary_sensor:
   - platform: status
@@ -194,11 +198,6 @@ rtttl:
 
 # Configure LED
 # Use single LED instead of WS2812 
-output:
-- platform: esp8266_pwm
-  id: activity_led_output
-  pin: GPIO14
-
 light: 
 - platform: monochromatic
   name: "${friendly_name} LED"

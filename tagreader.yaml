@@ -142,13 +142,13 @@ ota:
 
 # Enable SPI interface
 spi:
-  clk_pin: D0
-  miso_pin: D1
-  mosi_pin: D2
+  clk_pin: D5
+  miso_pin: D6
+  mosi_pin: D7
   
 pn532_spi:
   id: pn532_board
-  cs_pin: D3
+  cs_pin: D8
   on_tag:
     then:
     - homeassistant.tag_scanned: !lambda |
@@ -184,11 +184,11 @@ pn532_spi:
 output:
 # Define the buzzer output
 - platform: esp8266_pwm
-  pin: D7
+  pin: D2
   id: buzzer
 # Define the led output
 - platform: esp8266_pwm
-  pin: D5
+  pin: D1
   id: activity_led_output
 
 binary_sensor:

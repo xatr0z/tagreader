@@ -140,14 +140,15 @@ api:
 # Enable OTA upgrade
 ota:
 
+# Enable SPI interface
 spi:
-  clk_pin: D4
+  clk_pin: D0
+  miso_pin: D1
   mosi_pin: D2
-  miso_pin: D3
   
 pn532_spi:
   id: pn532_board
-  cs_pin: D1
+  cs_pin: D3
   on_tag:
     then:
     - homeassistant.tag_scanned: !lambda |

@@ -18,8 +18,8 @@ substitutions:
 esphome:
   name: $devicename
   platform: ESP8266
-  board: d1_mini
-
+  board: nodemcuv2
+  
   # Automatically add the mac address to the name
   # so you can use a single firmware for all devices
   name_add_mac_suffix: true
@@ -40,9 +40,6 @@ esphome:
     - light.turn_on:
         id: activity_led
         brightness: 100%
-        red: 0%
-        green: 0%
-        blue: 100%
         flash_length: 500ms
     - switch.turn_on: buzzer_enabled
     - switch.turn_on: led_enabled
@@ -112,9 +109,6 @@ api:
     - light.turn_on:
         id: activity_led
         brightness: 100%
-        red: 100%
-        green: 0%
-        blue: 0%    
     - lambda: |-
         auto message = new nfc::NdefMessage();
         std::string uri = "https://www.home-assistant.io/tag/";
@@ -132,9 +126,6 @@ api:
     - light.turn_on:
         id: activity_led
         brightness: 100%
-        red: 100%
-        green: 64.7%
-        blue: 0%    
     - lambda: 'id(pn532_board).clean_mode();'
     - wait_until:
         not:
@@ -185,9 +176,6 @@ pn532_i2c:
         - light.turn_on:
             id: activity_led
             brightness: 100%
-            red: 0%
-            green: 100%
-            blue: 0%
             flash_length: 500ms
 
 # Define the buzzer output
@@ -205,14 +193,16 @@ rtttl:
   output: buzzer
 
 # Configure LED
-light:
-- platform: fastled_clockless
-  chipset: WS2812
-  pin: D8
-  num_leds: 1
-  flash_transition_length: 500ms
-  rgb_order: GRB
-  id: activity_led
+# Use single LED instead of WS2812 
+output:
+- platform: esp8266_pwm
+  id: activity_led_output
+  pin: GPIO14
+
+light: 
+- platform: monochromatic
   name: "${friendly_name} LED"
+  output: activity_led_output
+  id: activity_led
   restore_mode: ALWAYS_OFF
-  
+  flash_transition_length: 500ms

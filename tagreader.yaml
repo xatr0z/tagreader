@@ -2,7 +2,7 @@
 wifi:
   networks:
     - ssid: !secret esphome_ssid
-      password: '!secret esphome_pwd
+      password: !secret esphome_pwd
   ap:
     ssid: ${devicename}
 

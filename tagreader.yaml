@@ -204,4 +204,3 @@ light:
   output: activity_led_output
   id: activity_led
   restore_mode: ALWAYS_OFF
-  flash_transition_length: 500ms

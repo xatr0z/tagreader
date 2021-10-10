@@ -1,8 +1,8 @@
 # Insert your SSID and Your PWD after inital setup
 wifi:
   networks:
-#    - ssid: 'REPLACEME'          # Enter your WiFi SSID here. Example: `ssid: 'your_network_name'`
-#      password: 'REPLACEME'      # Enter your wifi password here. Example: `password: 'abcde123456'`
+    - ssid: !secret esphome_ssid
+      password: '!secret esphome_pwd
   ap:
     ssid: ${devicename}
 
@@ -140,12 +140,14 @@ api:
 # Enable OTA upgrade
 ota:
 
-i2c:
-  scan: False
-  frequency: 400kHz
-
-pn532_i2c:
+spi:
+  clk_pin: D4
+  mosi_pin: D2
+  miso_pin: D3
+  
+pn532_spi:
   id: pn532_board
+  cs_pin: D1
   on_tag:
     then:
     - homeassistant.tag_scanned: !lambda |

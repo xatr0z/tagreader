@@ -1,8 +1,9 @@
 # Insert your SSID and Your PWD after inital setup
 wifi:
-    ssid: !secret esphome_ssid
-    password: !secret esphome_pwd
-    domain: !secret esphome_domain
+  ssid: !secret esphome_ssid
+  password: !secret esphome_pwd
+  domain: !secret esphome_domain
+  
   ap:
     ssid: ${devicename}
 

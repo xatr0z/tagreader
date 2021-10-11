@@ -5,16 +5,10 @@ wifi:
   domain: !secret esphome_domain
   
   ap:
-    ssid: ${devicename}
+    ssid: tagreader
 
 # Enable the captive portal for inital WiFi setup
 captive_portal:
-
-# Text sensors with general information.
-text_sensor:
-  # Expose ESPHome version as sensor.
-  - platform: version
-    name: Deurbel ESPHome Version
 
 # Sensors with general information.
 sensor:
@@ -32,13 +26,13 @@ substitutions:
   friendly_name: TagReader
 
 esphome:
-  name: $devicename
+  name: tagreader
   platform: ESP8266
   board: nodemcuv2
   
   # Automatically add the mac address to the name
   # so you can use a single firmware for all devices
-  name_add_mac_suffix: true
+  name_add_mac_suffix: false
 
   # This will allow for (future) project identification,
   # configuration and updates.

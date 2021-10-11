@@ -1,15 +1,30 @@
 # Insert your SSID and Your PWD after inital setup
 wifi:
-  networks:
-    - ssid: !secret esphome_ssid
-      password: !secret esphome_pwd
+    ssid: !secret esphome_ssid
+    password: !secret esphome_pwd
+    domain: !secret esphome_domain
   ap:
     ssid: ${devicename}
 
 # Enable the captive portal for inital WiFi setup
 captive_portal:
 
+# Text sensors with general information.
+text_sensor:
+  # Expose ESPHome version as sensor.
+  - platform: version
+    name: Deurbel ESPHome Version
 
+# Sensors with general information.
+sensor:
+  # Uptime sensor.
+  - platform: uptime
+    name: Tagreader Uptime
+
+  # WiFi Signal sensor.
+  - platform: wifi_signal
+    name: Tagreader WiFi Signal
+    update_interval: 60s
 
 substitutions:
   devicename: tagreader
